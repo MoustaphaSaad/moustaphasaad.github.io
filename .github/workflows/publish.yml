@@ -26,13 +26,9 @@ jobs:
       - name: Build
         run: hugo --minify
 
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        if: ${{ github.ref == 'refs/heads/master' }}
         with:
-          aws-access-key-id: ${{ secrets.AWS_BUCKET_ACCESS_KEY }}
-          aws-secret-access-key: ${{ secrets.AWS_BUCKET_SECRET_KEY }}
-          aws-region: eu-west-3
-
-      - name: Upload files to aws
-        shell: bash
-        run: aws s3 sync ./public s3://moustapha.xyz/ --acl public-read
+          github_token: ${{ secrets.MOUSTAPHA_XYZ_WEBSITE_GITHUB_TOKEN }}
+          publish_dir: ./public
