@@ -1,4 +1,4 @@
-baseURL = 'https://moustapha.xyz'
+baseURL = 'http://moustapha.xyz'
 languageCode = 'en-us'
 title = "Moustapha Saad"
 theme = "ink"
