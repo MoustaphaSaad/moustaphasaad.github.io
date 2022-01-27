@@ -49,6 +49,11 @@ name = "Tags"
 url = "/tags"
 weight = 5
 
+[[menu.main]]
+name = "Resume"
+url = "/resume.pdf"
+weight = 6
+
 [[params.social]]
 name = "Email"
 icon = "mail"
