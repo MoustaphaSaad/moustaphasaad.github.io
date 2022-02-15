@@ -1,6 +1,6 @@
 ---
 title: "File Format Basics"
-date: 2022-01-01T15:27:11+02:00
+date: 2022-02-15T23:44:49+02:00
 draft: false
 description: "Some notes on how to properly write a file format"
 tags: ["general-programming", "IO"]
