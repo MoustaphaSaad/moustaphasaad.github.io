@@ -8,7 +8,7 @@ tags: ["general-programming", "IO"]
 
 In the last couple of days I've needed to write a simple file format for assets in a toy engine of mine, here are some notes I have gathered about writing file formats.
 
-I usually have binary and text files along these lines that i want to group into a single resources file
+I have binary and text files along these lines that i want to group into a single resources file
 - `/font/my_font.ttf`
 - `/image/logo.png`
 - `/mesh/player.gltf`
