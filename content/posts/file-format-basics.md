@@ -9,15 +9,19 @@ tags: ["general-programming", "IO"]
 In the last couple of days I've needed to write a simple file format for assets in a toy engine of mine, here are some notes I have gathered about writing file formats.
 
 I usually have binary and text files along these lines that i want to group into a single resources file
-- /font/my_font.ttf
-- /image/logo.png
-- /mesh/player.gltf
-- /shader/vertex.glsl
+- `/font/my_font.ttf`
+- `/image/logo.png`
+- `/mesh/player.gltf`
+- `/shader/vertex.glsl`
 
 First of all we have to answer a set of questions to somewhat narrow the solution space.
 
 ### Will we need atomic transactions?
-If you answer yes, then your best bet is `SQLite`, you can either use traditional database schemas and create a table for each object type you have, or if you just want a simple way to group multiple files in a single file like I do then you can create a single files table where you store file names and content just like so `CREATE TABLE files(filename TEXT PRIMARY KEY, content BLOB);`
+If you answer yes, then your best bet is `SQLite`, you can either use traditional database schemas and create a table for each object type you have, or if you just want a simple way to group multiple files in a single file like I do then you can create a single files table where you store file names and content just like so 
+
+```sqlite
+CREATE TABLE files(filename TEXT PRIMARY KEY, content BLOB);
+```
 
 In my case the answer is no, I don't need atomic transactions.
 
@@ -49,19 +53,19 @@ We only have a single convention, all our offsets are measured from the start of
 
 Now we can use our primitives to illustrate the structure of your file format.
 
-- Magic number: uint64_t
-- Version: uint64_t
-- Header Offset: uint64_t
+- Magic number: `uint64_t`
+- Version: `uint64_t`
+- Header Offset: `uint64_t`
 - Blobs: bytes
-- Header entries count: uint64
+- Header entries count: `uint64_t`
 - Header entries: array of
   - File name: string
-  - File offset: uint64_t
-  - File size: uint64_t
+  - File offset: `uint64_t`
+  - File size: `uint64_t`
 
 ##### Magic number
 
-A Magic number is a constant numerical or text value used to identify file formats. It's usually the first thing in the file. It's a nice thing to have in your file format especially when you know that some users/companies fiddle with file extensions. I have seen some programs writing `.dcm` files which are in fact are not DICOMs.
+A Magic number is a constant numerical or text value used to identify file formats. It's usually the first thing in the file. It's a nice thing to have in your file format especially when you know that some users/companies fiddle with file extensions. I have seen some programs writing `.dcm` files which are in fact are not `DICOMs`.
 
 ##### Version
 
@@ -101,7 +105,7 @@ We preferred to have the implementation as easy as possible that's why we only h
 
 File reading is equally simple, we open the file, seek to the header at the end of the file, read it and keep an in memory table for each blob/file, when the user asks to read any blob content we lookup its offset and size from the table using blob/file name, seek to it then read. It couldn't be any simpler.
 
-Another good convention to have is to have your strings null terminated on disk. It's a nice quality of life improvement when working with this format using C, also it'll only cost you a single extra (null) byte.
+Another good convention to have is to have your strings null terminated on disk. It's a nice quality of life improvement when working with this format using `C`, also it'll only cost you a single extra `null` byte.
 
 You can stream blob's content by modelling your blob reading interface in a similar manner to disk files
 
