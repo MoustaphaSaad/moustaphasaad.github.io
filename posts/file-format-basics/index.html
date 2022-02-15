@@ -77,7 +77,7 @@
 <p>First of all we have to answer a set of questions to somewhat narrow the solution space.</p>
 <h3 id=will-we-need-atomic-transactions>Will we need atomic transactions?</h3>
 <p>If you answer yes, then your best bet is <code>SQLite</code>, you can either use traditional database schemas and create a table for each object type you have, or if you just want a simple way to group multiple files in a single file like I do then you can create a single files table where you store file names and content just like so</p>
-<div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>CREATE TABLE files(filename TEXT PRIMARY KEY, content BLOB);
+<div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-SQL data-lang=SQL><span style=color:#00f>CREATE</span> <span style=color:#00f>TABLE</span> files(filename TEXT <span style=color:#00f>PRIMARY</span> <span style=color:#00f>KEY</span>, content BLOB);
 </code></pre></div><p>In my case the answer is no, I don&rsquo;t need atomic transactions.</p>
 <h3 id=will-we-need-our-format-to-be-human-readable>Will we need our format to be human readable?</h3>
 <p>If you answer yes, then you can either use <code>JSON</code>, or <code>XML</code>, or <code>TOML</code>, or any human readable data encodings. You&rsquo;ll need to encode your binary blobs into a text friendly encoding like <code>base64</code> for example. In my experience you rarely need your files to be human readable because most users don&rsquo;t manipulate files by hand anyway.</p>
@@ -112,7 +112,7 @@
 <p>A Magic number is a constant numerical or text value used to identify file formats. It&rsquo;s usually the first thing in the file. It&rsquo;s a nice thing to have in your file format especially when you know that some users/companies fiddle with file extensions. I have seen some programs writing <code>.dcm</code> files which are in fact are not <code>DICOMs</code>.</p>
 <h5 id=version>Version</h5>
 <p>A File format version. This is one of the most critical things to add to your format. It tracks the structure and representation of your files, and as your file format evolve you increment it and keep the old version code/support if you want backward compatibility. You use the version information to choose which read/write routines will you use with this file, in my case I have a switch statement, a virtual table (inheritance/polymorphism) will also work just as fine here.</p>
-<div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#00f>switch</span> (package.version)
+<div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C++ data-lang=C++><span style=color:#00f>switch</span> (package.version)
 {
 <span style=color:#00f>case</span> VERSION_1:
     <span style=color:#00f>if</span> (<span style=color:#00f>auto</span> err = _read_table_version_1(stream, package))
@@ -137,9 +137,9 @@
 <p>File reading is equally simple, we open the file, seek to the header at the end of the file, read it and keep an in memory table for each blob/file, when the user asks to read any blob content we lookup its offset and size from the table using blob/file name, seek to it then read. It couldn&rsquo;t be any simpler.</p>
 <p>Another good convention to have is to have your strings null terminated on disk. It&rsquo;s a nice quality of life improvement when working with this format using <code>C</code>, also it&rsquo;ll only cost you a single extra <code>null</code> byte.</p>
 <p>You can stream blob&rsquo;s content by modelling your blob reading interface in a similar manner to disk files</p>
-<div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>Blob* package_blob_open(Package* p, const char* name);
-size_t package_blob_read(Blob* blob, void* buffer, size_t buffer_size);
-void package_blob_close(Blob* blob);
+<div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C++ data-lang=C++>Blob* package_blob_open(Package* p, <span style=color:#00f>const</span> <span style=color:#2b91af>char</span>* name);
+size_t package_blob_read(Blob* blob, <span style=color:#2b91af>void</span>* buffer, size_t buffer_size);
+<span style=color:#2b91af>void</span> package_blob_close(Blob* blob);
 </code></pre></div><h4 id=pitfalls>Pitfalls</h4>
 <p>The most famous pitfall in writing file formats is not including a version of the format, make sure you&rsquo;re always versioning all your formats no matter what, if you&rsquo;re using<code> SQLite</code> you should version your format, if you&rsquo;re using <code>JSON</code> you should version your format, and especially if you&rsquo;re using binary you should version your format.</p>
 <p>Always use exact integer types when writing/reading to disk, don&rsquo;t use <code>size_t</code>, use <code>uint32_t</code> or <code>uint64_t</code>.</p>
