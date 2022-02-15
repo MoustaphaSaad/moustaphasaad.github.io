@@ -19,7 +19,7 @@ First of all we have to answer a set of questions to somewhat narrow the solutio
 ### Will we need atomic transactions?
 If you answer yes, then your best bet is `SQLite`, you can either use traditional database schemas and create a table for each object type you have, or if you just want a simple way to group multiple files in a single file like I do then you can create a single files table where you store file names and content just like so 
 
-```sqlite
+```SQL
 CREATE TABLE files(filename TEXT PRIMARY KEY, content BLOB);
 ```
 
@@ -71,7 +71,7 @@ A Magic number is a constant numerical or text value used to identify file forma
 
 A File format version. This is one of the most critical things to add to your format. It tracks the structure and representation of your files, and as your file format evolve you increment it and keep the old version code/support if you want backward compatibility. You use the version information to choose which read/write routines will you use with this file, in my case I have a switch statement, a virtual table (inheritance/polymorphism) will also work just as fine here.
 
-```c++
+```C++
 switch (package.version)
 {
 case VERSION_1:
@@ -109,7 +109,7 @@ Another good convention to have is to have your strings null terminated on disk.
 
 You can stream blob's content by modelling your blob reading interface in a similar manner to disk files
 
-```
+```C++
 Blob* package_blob_open(Package* p, const char* name);
 size_t package_blob_read(Blob* blob, void* buffer, size_t buffer_size);
 void package_blob_close(Blob* blob);
