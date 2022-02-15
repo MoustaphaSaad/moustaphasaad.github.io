@@ -1,0 +1,162 @@
+<!doctype html><html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge"><title>File Format Basics - Moustapha Saad</title><meta name=viewport content="width=device-width,initial-scale=1">
+<meta itemprop=name content="File Format Basics">
+<meta itemprop=description content="Some notes on how to properly write a file format"><meta itemprop=datePublished content="2022-01-01T15:27:11+02:00">
+<meta itemprop=dateModified content="2022-01-01T15:27:11+02:00">
+<meta itemprop=wordCount content="1123">
+<meta itemprop=keywords content="general-programming,IO,"><meta property="og:title" content="File Format Basics">
+<meta property="og:description" content="Some notes on how to properly write a file format">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://moustapha.xyz/posts/file-format-basics/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2022-01-01T15:27:11+02:00">
+<meta property="article:modified_time" content="2022-01-01T15:27:11+02:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="File Format Basics">
+<meta name=twitter:description content="Some notes on how to properly write a file format">
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display:700" rel=stylesheet type=text/css>
+<link rel=stylesheet type=text/css media=screen href=https://moustapha.xyz/css/normalize.css>
+<link rel=stylesheet type=text/css media=screen href=https://moustapha.xyz/css/main.css>
+<link id=dark-scheme rel=stylesheet type=text/css href=https://moustapha.xyz/css/dark.css>
+<script src=https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js></script>
+<script src=https://moustapha.xyz/js/main.js></script>
+</head>
+<body>
+<div class="container wrapper">
+<div class=header>
+<h1 class=site-title><a href=https://moustapha.xyz/>Moustapha Saad</a></h1>
+<div class=site-description><p>Some random graphics/compilers programmer</p><nav class="nav social">
+<ul class=flat><li><a href=mailto:moustapha.saad.abdelhamed@gmail.com title=Email><i data-feather=mail></i></a></li><li><a href=https://github.com/MoustaphaSaad title=Github><i data-feather=github></i></a></li><li><a href=/index.xml title=RSS><i data-feather=rss></i></a></li></ul>
+</nav>
+</div>
+<nav class=nav>
+<ul class=flat>
+<li>
+<a href=/>Home</a>
+</li>
+<li>
+<a href=/posts>All Posts</a>
+</li>
+<li>
+<a href=/projects>Projects</a>
+</li>
+<li>
+<a href=/about>About</a>
+</li>
+<li>
+<a href=/tags>Tags</a>
+</li>
+<li>
+<a href=/resume.pdf>Resume</a>
+</li>
+</ul>
+</nav>
+</div>
+<div class=post>
+<div class=post-header>
+<div class=meta>
+<div class=date>
+<span class=day>01</span>
+<span class=rest>Jan 2022</span>
+</div>
+</div>
+<div class=matter>
+<h1 class=title>File Format Basics</h1>
+</div>
+</div>
+<div class=markdown>
+<p>In the last couple of days I&rsquo;ve needed to write a simple file format for assets in a toy engine of mine, here are some notes I have gathered about writing file formats.</p>
+<p>I usually have binary and text files along these lines that i want to group into a single resources file</p>
+<ul>
+<li>/font/my_font.ttf</li>
+<li>/image/logo.png</li>
+<li>/mesh/player.gltf</li>
+<li>/shader/vertex.glsl</li>
+</ul>
+<p>First of all we have to answer a set of questions to somewhat narrow the solution space.</p>
+<h3 id=will-we-need-atomic-transactions>Will we need atomic transactions?</h3>
+<p>If you answer yes, then your best bet is <code>SQLite</code>, you can either use traditional database schemas and create a table for each object type you have, or if you just want a simple way to group multiple files in a single file like I do then you can create a single files table where you store file names and content just like so <code>CREATE TABLE files(filename TEXT PRIMARY KEY, content BLOB);</code></p>
+<p>In my case the answer is no, I don&rsquo;t need atomic transactions.</p>
+<h3 id=will-we-need-our-format-to-be-human-readable>Will we need our format to be human readable?</h3>
+<p>If you answer yes, then you can either use <code>JSON</code>, or <code>XML</code>, or <code>TOML</code>, or any human readable data encodings. You&rsquo;ll need to encode your binary blobs into a text friendly encoding like <code>base64</code> for example. In my experience you rarely need your files to be human readable because most users don&rsquo;t manipulate files by hand anyway.</p>
+<p>In my case the answer is no, I don&rsquo;t need my format to be human readable.</p>
+<h3 id=is-there-an-already-existing-convention-for-what-were-trying-to-do>Is there an already existing convention for what we&rsquo;re trying to do?</h3>
+<p>If you answer yes, then you should probably follow the conventions. For example if we&rsquo;re using this data to communicate with network service, then <code>JSON</code> will probably be a better fit.</p>
+<p>In my case there are no set conventions and it&rsquo;s an internal format to my toy engine anyway</p>
+<h3 id=our-solution>Our Solution</h3>
+<p>Given the answer to the above questions the simplest possible solution is to open a file and write your data into it. We open a binary file. write the file name, file size, and file content.</p>
+<h4 id=primitives>Primitives</h4>
+<p>First we need to define how to write the primitive types, in my case I chose to work with a single primitive type <code>uint64_t</code> (we have a lot of memory and disk space nowadays) we simply define it as an 8 byte unsigned integer written in little endian because most CPUs these days are little endian anyway so this way we can just <code>fwrite</code> our <code>uint64_t</code> directly in most platforms.</p>
+<p>Then we go on and define how to write our composite types, In my case I only have one composite type <code>string</code> we simply define it as a count with <code>uint64_t</code> type followed by the null terminated file name bytes.</p>
+<h4 id=conventions>Conventions</h4>
+<p>We only have a single convention, all our offsets are measured from the start of the file, basically they are absolute positions in the file.</p>
+<h4 id=structure>Structure</h4>
+<p>Now we can use our primitives to illustrate the structure of your file format.</p>
+<ul>
+<li>Magic number: uint64_t</li>
+<li>Version: uint64_t</li>
+<li>Header Offset: uint64_t</li>
+<li>Blobs: bytes</li>
+<li>Header entries count: uint64</li>
+<li>Header entries: array of
+<ul>
+<li>File name: string</li>
+<li>File offset: uint64_t</li>
+<li>File size: uint64_t</li>
+</ul>
+</li>
+</ul>
+<h5 id=magic-number>Magic number</h5>
+<p>A Magic number is a constant numerical or text value used to identify file formats. It&rsquo;s usually the first thing in the file. It&rsquo;s a nice thing to have in your file format especially when you know that some users/companies fiddle with file extensions. I have seen some programs writing <code>.dcm</code> files which are in fact are not DICOMs.</p>
+<h5 id=version>Version</h5>
+<p>A File format version. This is one of the most critical things to add to your format. It tracks the structure and representation of your files, and as your file format evolve you increment it and keep the old version code/support if you want backward compatibility. You use the version information to choose which read/write routines will you use with this file, in my case I have a switch statement, a virtual table (inheritance/polymorphism) will also work just as fine here.</p>
+<div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#00f>switch</span> (package.version)
+{
+<span style=color:#00f>case</span> VERSION_1:
+    <span style=color:#00f>if</span> (<span style=color:#00f>auto</span> err = _read_table_version_1(stream, package))
+        <span style=color:#00f>return</span> err;
+    <span style=color:#00f>break</span>;
+<span style=color:#00f>default</span>:
+    <span style=color:#00f>return</span> ERROR_UNSUPPORTED_VERSION;
+}
+</code></pre></div><h5 id=header-offset>Header Offset</h5>
+<p>Tells you where the header starts. We usually put the headers at the end of the file so that appending new data to the file doesn&rsquo;t move too many bytes around. We just read the header into memory, write the data, then rewrite the header after it.</p>
+<h5 id=blobs>Blobs</h5>
+<p>This is just the binary dump of files' content.</p>
+<h5 id=header>Header</h5>
+<p>Header is an array of files' description. We start with the count of files in this array followed by each file&rsquo;s information.</p>
+<ul>
+<li>File name: a string containing the name we use to refer to this file/blob</li>
+<li>File offset: offset from the start of the file (absolute position) of the file content blob</li>
+<li>File size: the size of this blob in bytes</li>
+</ul>
+<h4 id=implementation>Implementation</h4>
+<p>We preferred to have the implementation as easy as possible that&rsquo;s why we only have a single primitive type and a single composite type, which simplifies the implementation a lot, because now I only need 2 functions <code>_write_uint64_t</code> and <code>_write_string</code> which I then use in all the other functions.</p>
+<p>File reading is equally simple, we open the file, seek to the header at the end of the file, read it and keep an in memory table for each blob/file, when the user asks to read any blob content we lookup its offset and size from the table using blob/file name, seek to it then read. It couldn&rsquo;t be any simpler.</p>
+<p>Another good convention to have is to have your strings null terminated on disk. It&rsquo;s a nice quality of life improvement when working with this format using C, also it&rsquo;ll only cost you a single extra (null) byte.</p>
+<p>You can stream blob&rsquo;s content by modelling your blob reading interface in a similar manner to disk files</p>
+<div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>Blob* package_blob_open(Package* p, const char* name);
+size_t package_blob_read(Blob* blob, void* buffer, size_t buffer_size);
+void package_blob_close(Blob* blob);
+</code></pre></div><h4 id=pitfalls>Pitfalls</h4>
+<p>The most famous pitfall in writing file formats is not including a version of the format, make sure you&rsquo;re always versioning all your formats no matter what, if you&rsquo;re using<code> SQLite</code> you should version your format, if you&rsquo;re using <code>JSON</code> you should version your format, and especially if you&rsquo;re using binary you should version your format.</p>
+<p>Always use exact integer types when writing/reading to disk, don&rsquo;t use <code>size_t</code>, use <code>uint32_t</code> or <code>uint64_t</code>.</p>
+<p>You should document every version of your format, least your can do is have a <code>Docs.h</code> along with your code to describe the format in.</p>
+<p>As with any other piece of software you should always test your implementation against the documentation you&rsquo;ve written, sadly I&rsquo;ve seen many implementations release to production with bugs and they have to live with these bugs forever.</p>
+</div>
+<div class=tags>
+<ul class=flat>
+<li><a href=/tags/general-programming>general-programming</a></li>
+<li><a href=/tags/io>IO</a></li>
+</ul>
+</div></div>
+</div>
+<div class="footer wrapper">
+<nav class=nav>
+<div>2022 © Copyright notice | <a href=https://github.com/knadh/hugo-ink>Ink</a> theme on <a href=https://gohugo.io>Hugo</a></div>
+</nav>
+</div>
+<script>feather.replace()</script>
+</body>
+</html>
