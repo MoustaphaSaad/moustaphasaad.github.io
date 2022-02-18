@@ -6,9 +6,7 @@ description: "Some notes on how to properly write a file format"
 tags: ["general-programming", "IO"]
 ---
 
-<aside>
-💡 Update(18/02/2022): Added the streaming question.
-</aside>
+> 💡 Update(18/02/2022): Added the streaming question.
 
 In the last couple of days I've needed to write a simple file format for assets in a toy engine of mine, here are some notes I have gathered about writing file formats.
 
