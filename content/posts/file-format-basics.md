@@ -36,6 +36,12 @@ If you answer yes, then you should probably follow the conventions. For example 
 
 In my case there are no set conventions and it's an internal format to my toy engine anyway
 
+### Will you ever need to stream the file over the network?
+
+If you answer yes, then you should probably put more metadata up front so that someone receiving it the file over the network can decide what to ignore or request to read
+
+In my case I won't need to stream the file. It's a normal disk file which means we can seek around into it. That's why I decided to optimize for pushing blobs to the file by writing the headers at the end.
+
 ### Our Solution
 Given the answer to the above questions the simplest possible solution is to open a file and write your data into it. We open a binary file. write the file name, file size, and file content.
 
@@ -124,3 +130,7 @@ Always use exact integer types when writing/reading to disk, don't use `size_t`,
 You should document every version of your format, least your can do is have a `Docs.h` along with your code to describe the format in.
 
 As with any other piece of software you should always test your implementation against the documentation you've written, sadly I've seen many implementations release to production with bugs and they have to live with these bugs forever.
+
+<aside>
+- Update(18/02/2022): Added the streaming question.
+</aside>
