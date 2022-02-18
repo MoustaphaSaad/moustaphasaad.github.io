@@ -6,6 +6,10 @@ description: "Some notes on how to properly write a file format"
 tags: ["general-programming", "IO"]
 ---
 
+<aside>
+💡 Update(18/02/2022): Added the streaming question.
+</aside>
+
 In the last couple of days I've needed to write a simple file format for assets in a toy engine of mine, here are some notes I have gathered about writing file formats.
 
 I have binary and text files along these lines that i want to group into a single resources file
@@ -130,7 +134,3 @@ Always use exact integer types when writing/reading to disk, don't use `size_t`,
 You should document every version of your format, least your can do is have a `Docs.h` along with your code to describe the format in.
 
 As with any other piece of software you should always test your implementation against the documentation you've written, sadly I've seen many implementations release to production with bugs and they have to live with these bugs forever.
-
-<aside>
-- Update(18/02/2022): Added the streaming question.
-</aside>
