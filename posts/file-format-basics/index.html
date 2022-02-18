@@ -5,7 +5,7 @@
 <meta itemprop=name content="File Format Basics">
 <meta itemprop=description content="Some notes on how to properly write a file format"><meta itemprop=datePublished content="2022-02-15T23:44:49+02:00">
 <meta itemprop=dateModified content="2022-02-15T23:44:49+02:00">
-<meta itemprop=wordCount content="1122">
+<meta itemprop=wordCount content="1207">
 <meta itemprop=keywords content="general-programming,IO,"><meta property="og:title" content="File Format Basics">
 <meta property="og:description" content="Some notes on how to properly write a file format">
 <meta property="og:type" content="article">
@@ -85,6 +85,9 @@
 <h3 id=is-there-an-already-existing-convention-for-what-were-trying-to-do>Is there an already existing convention for what we&rsquo;re trying to do?</h3>
 <p>If you answer yes, then you should probably follow the conventions. For example if we&rsquo;re using this data to communicate with network service, then <code>JSON</code> will probably be a better fit.</p>
 <p>In my case there are no set conventions and it&rsquo;s an internal format to my toy engine anyway</p>
+<h3 id=will-you-ever-need-to-stream-the-file-over-the-network>Will you ever need to stream the file over the network?</h3>
+<p>If you answer yes, then you should probably put more metadata up front so that someone receiving it the file over the network can decide what to ignore or request to read</p>
+<p>In my case I won&rsquo;t need to stream the file. It&rsquo;s a normal disk file which means we can seek around into it. That&rsquo;s why I decided to optimize for pushing blobs to the file by writing the headers at the end.</p>
 <h3 id=our-solution>Our Solution</h3>
 <p>Given the answer to the above questions the simplest possible solution is to open a file and write your data into it. We open a binary file. write the file name, file size, and file content.</p>
 <h4 id=primitives>Primitives</h4>
