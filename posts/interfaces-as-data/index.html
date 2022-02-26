@@ -1,0 +1,235 @@
+<!doctype html><html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge"><title>Interfaces as Data - Moustapha Saad</title><meta name=viewport content="width=device-width,initial-scale=1">
+<meta itemprop=name content="Interfaces as Data">
+<meta itemprop=description content="Introducing the case for building interfaces around data instead of code"><meta itemprop=datePublished content="2022-02-26T20:57:09+02:00">
+<meta itemprop=dateModified content="2022-02-26T20:57:09+02:00">
+<meta itemprop=wordCount content="1163">
+<meta itemprop=keywords content="design,OOP,"><meta property="og:title" content="Interfaces as Data">
+<meta property="og:description" content="Introducing the case for building interfaces around data instead of code">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://moustapha.xyz/posts/interfaces-as-data/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2022-02-26T20:57:09+02:00">
+<meta property="article:modified_time" content="2022-02-26T20:57:09+02:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="Interfaces as Data">
+<meta name=twitter:description content="Introducing the case for building interfaces around data instead of code">
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display:700" rel=stylesheet type=text/css>
+<link rel=stylesheet type=text/css media=screen href=https://moustapha.xyz/css/normalize.css>
+<link rel=stylesheet type=text/css media=screen href=https://moustapha.xyz/css/main.css>
+<link id=dark-scheme rel=stylesheet type=text/css href=https://moustapha.xyz/css/dark.css>
+<script src=https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js></script>
+<script src=https://moustapha.xyz/js/main.js></script>
+</head>
+<body>
+<div class="container wrapper">
+<div class=header>
+<h1 class=site-title><a href=https://moustapha.xyz/>Moustapha Saad</a></h1>
+<div class=site-description><p>Some random graphics/compilers programmer</p><nav class="nav social">
+<ul class=flat><li><a href=mailto:moustapha.saad.abdelhamed@gmail.com title=Email><i data-feather=mail></i></a></li><li><a href=https://github.com/MoustaphaSaad title=Github><i data-feather=github></i></a></li><li><a href=/index.xml title=RSS><i data-feather=rss></i></a></li></ul>
+</nav>
+</div>
+<nav class=nav>
+<ul class=flat>
+<li>
+<a href=/>Home</a>
+</li>
+<li>
+<a href=/posts>All Posts</a>
+</li>
+<li>
+<a href=/projects>Projects</a>
+</li>
+<li>
+<a href=/about>About</a>
+</li>
+<li>
+<a href=/tags>Tags</a>
+</li>
+<li>
+<a href=/resume.pdf>Resume</a>
+</li>
+</ul>
+</nav>
+</div>
+<div class=post>
+<div class=post-header>
+<div class=meta>
+<div class=date>
+<span class=day>26</span>
+<span class=rest>Feb 2022</span>
+</div>
+</div>
+<div class=matter>
+<h1 class=title>Interfaces as Data</h1>
+</div>
+</div>
+<div class=markdown>
+<p>Most of the software engineers I&rsquo;ve met put a lot of emphasis on what I call grand design. Every project should have an over-arching plan behind it, and if it doesn&rsquo;t have one then your solution is not &ldquo;well-designed&rdquo;.</p>
+<p>Over the last couple of years I&rsquo;ve came to realise that this is not really true, and the most important design principals are really too simple and straight-forward to the degree that it might seem obvious, But sadly most people don&rsquo;t pay attention to them because they are not as flashy as the complex monstrosities which developers usually work with.</p>
+<p>One of those important design principals is to construct your interfaces around data instead of code. To illustrate this point we&rsquo;ll inspect some fictional problem that&rsquo;s usually used in this kind of settings. First we&rsquo;ll go through this problem using the traditional OOP (<code>C++</code>, <code>Java</code>) methods which rely heavily on building the interfaces around code, Then we&rsquo;ll see how this can be simplified by using data interfaces.</p>
+<h2 id=simplest-oop-solution>Simplest OOP Solution</h2>
+<p>Our problem is as simple as it gets. We get data from some source (might be disk, network, database, etc&mldr;), Do some processing on the data, Then report the results to user.</p>
+<div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Cpp data-lang=Cpp><span style=color:#00f>class</span> <span style=color:#2b91af>CDataProcessor</span>
+{
+<span style=color:#00f>public</span>:
+	<span style=color:#2b91af>void</span> GetData();
+	<span style=color:#2b91af>void</span> Process();
+	<span style=color:#2b91af>void</span> PrintResult();
+<span style=color:#00f>private</span>:
+	...
+};
+
+<span style=color:#2b91af>int</span> main()
+{
+	CDataProcessor p{};
+	p.GetData();
+	p.Process();
+	p.PrintResult();
+}
+</code></pre></div><p>It&rsquo;s not the best of code, Yet it&rsquo;s not the worst either. Most traditional (<code>C++</code>, <code>Java</code>) OOP Developers will say that this implementation has the following problems:</p>
+<ul>
+<li><code>CDataProcessor</code> has too many responsibilities, We can&rsquo;t reuse the algorithm in other applications.</li>
+<li>The Processing is coupled with data retrieval and result reporting code.</li>
+</ul>
+<h2 id=single-responsibility-per-class>Single Responsibility Per Class</h2>
+<p>First we&rsquo;ll put different responsibilities in different classes, which means we&rsquo;ll end up with 3 classes:</p>
+<ul>
+<li><code>CFileProvider</code>: retrieves the data from a file.</li>
+<li><code>CDataProcessing</code>: does the data processing part.</li>
+<li><code>CResultReporting</code>: reports the result to an output file.</li>
+</ul>
+<p>Now our classes are easy to understand, maintain, and reuse.</p>
+<h2 id=going-up-the-tower-of-abstractions>Going Up The Tower Of Abstractions</h2>
+<p>What happens if our data is in a database rather than a file? In the last iteration our application is highly coupled with data being in a file. To fix this problem we&rsquo;ll need to abstract the data retrieval code into its own interfaces.</p>
+<div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Cpp data-lang=Cpp><span style=color:#00f>class</span> <span style=color:#2b91af>IDataProvider</span>
+{
+<span style=color:#00f>public</span>:
+	<span style=color:#2b91af>void</span> GetData();
+<span style=color:#00f>protected</span>:
+	<span style=color:#00f>virtual</span> <span style=color:#2b91af>void</span> GetDataFromImpl() = 0;
+};
+
+<span style=color:#00f>class</span> <span style=color:#2b91af>CFileProvider</span>: <span style=color:#00f>public</span> IDataProvider
+{
+<span style=color:#00f>protected</span>:
+	<span style=color:#2b91af>void</span> GetDataFromImpl() <span style=color:#00f>override</span>;
+};
+</code></pre></div><p>The same design can be used for data processing and result reporting.</p>
+<div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Cpp data-lang=Cpp><span style=color:#00f>class</span> <span style=color:#2b91af>IDataProcessor</span>
+{
+<span style=color:#00f>public</span>:
+	<span style=color:#2b91af>void</span> Process();
+<span style=color:#00f>protected</span>:
+	<span style=color:#00f>virtual</span> <span style=color:#2b91af>void</span> ProcessImpl() = 0;
+};
+
+<span style=color:#00f>class</span> <span style=color:#2b91af>CDataProcessing</span>: <span style=color:#00f>public</span> IDataProcessor
+{
+<span style=color:#00f>protected</span>:
+	<span style=color:#2b91af>void</span> ProcessImpl() <span style=color:#00f>override</span>;
+};
+
+<span style=color:#00f>class</span> <span style=color:#2b91af>IReportResult</span>
+{
+<span style=color:#00f>public</span>:
+	<span style=color:#2b91af>void</span> ReportResult();
+<span style=color:#00f>protected</span>:
+	<span style=color:#00f>virtual</span> <span style=color:#2b91af>void</span> ReportResultImpl() = 0;
+};
+
+<span style=color:#00f>class</span> <span style=color:#2b91af>CResultReporting</span>: <span style=color:#00f>public</span> IReportResult
+{
+<span style=color:#00f>protected</span>:
+	<span style=color:#2b91af>void</span> ReportResultImpl() <span style=color:#00f>override</span>;
+};
+</code></pre></div><p>Now that we have abstracted all of our operations we can mix and match different classes together so long as they implement our interfaces. This is going to be the best data processing application ever.</p>
+<h2 id=queue-in-the-factories>Queue in the Factories</h2>
+<p>In the last design iteration the creation of our concrete classes was done manually in the main function, We can put that in a factory class so that such logic be isolated. Now we only work with the abstract interfaces in the main function.</p>
+<p>The orchestration between all of our classes is also done manually in the main function, We can isolate this into a controller class which uses the factory to construct the instances then it uses them.</p>
+<div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Cpp data-lang=Cpp><span style=color:#00f>class</span> <span style=color:#2b91af>CFactory</span>
+{
+<span style=color:#00f>public</span>:
+	<span style=color:#00f>auto</span> GetInstances();
+};
+
+<span style=color:#00f>class</span> <span style=color:#2b91af>CController</span>
+{
+<span style=color:#00f>public</span>:
+	<span style=color:#2b91af>void</span> Start()
+	{
+		CFactory f{};
+		<span style=color:#00f>auto</span> [provider, processor, reporter] = f.GetInstance();
+		provider-&gt;GetData();
+		processor-&gt;Process();
+		reporter-&gt;ReportResult();
+		...
+	}
+};
+</code></pre></div><p>After all this awesome design refactoring work our application became flexible, we can get the data from different sources (files, network, databases, etc&mldr;), we can have many processing algorithms, and we can report to different outputs (console, files, network, etc&mldr;).</p>
+<h2 id=data-interfaces>Data Interfaces</h2>
+<p>In data interfaces we put more emphasis on data description/definition. In our new world data are just data they don&rsquo;t have behaviors.</p>
+<div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Cpp data-lang=Cpp><span style=color:#00f>struct</span> <span style=color:#2b91af>Raw_Data</span>
+{
+	std::vector&lt;Entry&gt; entries;
+};
+
+<span style=color:#00f>struct</span> <span style=color:#2b91af>Processed_Data</span>
+{
+	std::vector&lt;Algo_Data&gt; data_about_each_entry;
+};
+</code></pre></div><p>Now how will we load such data from disk?, We&rsquo;ll use good old functions.</p>
+<div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Cpp data-lang=Cpp><span style=color:green>// loads the data from the given file on disk
+</span><span style=color:green></span>Raw_Data load_data_from_disk(std::string_view filename);
+<span style=color:green>// processes the given raw data and outputs the equivalent processed data
+</span><span style=color:green></span>Processed_Data process_data_using_algorithm_1(<span style=color:#00f>const</span> Raw_Data&amp; raw_data);
+<span style=color:green>// report results to disk file
+</span><span style=color:green></span><span style=color:#2b91af>void</span> report_result_to_disk(<span style=color:#00f>const</span> Processed_Data&amp; processed_data, std::string_view filename);
+</code></pre></div><p>Our implementation is simple so far, But what about loading the data from different sources, like a database for example?. We use functions, again.</p>
+<div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Cpp data-lang=Cpp><span style=color:green>// extracts the relevant data from the given database connection
+</span><span style=color:green></span>Raw_Data load_data_from_database(<span style=color:#00f>const</span> Database&amp; db);
+<span style=color:green>// downloads the data from the given URL
+</span><span style=color:green></span>Raw_Data load_data_from_database(<span style=color:#00f>const</span> Url&amp; url);
+</code></pre></div><p>But how are we going to use such thing in our main function?</p>
+<div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Cpp data-lang=Cpp><span style=color:#2b91af>int</span> main()
+{
+	<span style=color:#00f>auto</span> raw_data = load_data_from_database(db);
+	<span style=color:#00f>auto</span> processed_data = process_data_using_algorithm_1(raw_data);
+	report_result_to_disk(processed_data, output_file);
+}
+</code></pre></div><p>As we can see it doesn&rsquo;t get any simpler than this. Some of you would say &ldquo;yeah, sure this will work if your data, and processing is trivial, my data is huge and I want to stream it&rdquo;, Don&rsquo;t worry my friend I got you.</p>
+<h2 id=streaming-huge-data>Streaming Huge Data</h2>
+<p>We use functions, again, you get the theme at this point. But this time we want to save the streaming state between function calls, so we use structs.</p>
+<div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Cpp data-lang=Cpp><span style=color:#00f>struct</span> <span style=color:#2b91af>Streamed_Raw_Data</span>
+{
+	Raw_Data loaded_raw_data;
+	Database* db;
+	...;
+};
+
+<span style=color:green>// starts the data streaming from a database
+</span><span style=color:green></span>Streamed_Raw_Data start_raw_data_streaming(Database* db, size_t entry_limit);
+<span style=color:green>// advances to the next streaming chunk if one exists
+</span><span style=color:green>// returns the number of entries loaded in the given streamed raw data instance
+</span><span style=color:green></span>size_t load_next_chunk(Streamed_Raw_Data&amp; raw_data);
+</code></pre></div><p>Voila, We can now stream our huge data easily. Note how we just reuse the same data type <code>Raw_Data</code> inside of <code>Streamed_Raw_Data</code> so that it can work nicely with our processing functions, after all our interface is the data itself so we have to keep it consistent to make our new streaming scheme compatible with our old code.</p>
+<h2 id=conclusion>Conclusion</h2>
+<p>Interfaces as code is a very bad idea because it couples a lot of code across different concerns together, This is not healthy for your project for the simple reason that it will slow you down a lot when you eventually need to refactor the code. And No, You&rsquo;ll need to refactor even the most perfect design if only to meet new business goals. The only constant thing in this universe is things change. Anything that doesn&rsquo;t take this simple principal into consideration is flawed.</p>
+<p>Once I embraced such principal, It felt liberating, I only need to worry about representing the essential data to my problem and focus on writing the application logic. An Extra benefit I found is that it made my code easier to test, after all my data is the interface so the only thing i need to do is to verify that the output data is correct and I&rsquo;m good to go. I don&rsquo;t need all the usual &ldquo;mocking&rdquo; classes and the complicated testing setups.</p>
+</div>
+<div class=tags>
+<ul class=flat>
+<li><a href=/tags/design>design</a></li>
+<li><a href=/tags/oop>OOP</a></li>
+</ul>
+</div></div>
+</div>
+<div class="footer wrapper">
+<nav class=nav>
+<div>2022 © Copyright notice | <a href=https://github.com/knadh/hugo-ink>Ink</a> theme on <a href=https://gohugo.io>Hugo</a></div>
+</nav>
+</div>
+<script>feather.replace()</script>
+</body>
+</html>
