@@ -1,7 +1,9 @@
 ---
 title: "Interfaces as Data"
 date: 2022-02-26T20:57:09+02:00
-draft: true
+draft: false
+description: "Introducing the case for building interfaces around data instead of code"
+tags: ["design", "OOP"]
 ---
 
 Most of the software engineers I've met put a lot of emphasis on what I call grand design. Every project should have an over-arching plan behind it, and if it doesn't have one then your solution is not "well-designed".
