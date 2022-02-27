@@ -166,7 +166,7 @@ Our implementation is simple so far, But what about loading the data from differ
 // extracts the relevant data from the given database connection
 Raw_Data load_data_from_database(const Database& db);
 // downloads the data from the given URL
-Raw_Data load_data_from_database(const Url& url);
+Raw_Data load_data_from_network(const Url& url);
 ```
 
 But how are we going to use such thing in our main function?
