@@ -1,0 +1,99 @@
+<!doctype html><html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge"><title>Status Update, 4 July 2022 - Moustapha Saad</title><meta name=viewport content="width=device-width,initial-scale=1">
+<meta itemprop=name content="Status Update, 4 July 2022">
+<meta itemprop=description content="Hello, this was an even slower week :D. I only worked on taha and renoir this week.
+In renoir news. I started working on making the compute example work on Metal backend. The compute example is a simple compute shader to increment 100 numbers in a GPU buffer. During that I found out that Metal&rsquo;s compute dispatch function needs the threads per thread-group count unlike OpenGL or DirectX which you can specify that size/count in the shader itself."><meta itemprop=datePublished content="2022-07-05T00:21:25+02:00">
+<meta itemprop=dateModified content="2022-07-05T00:21:25+02:00">
+<meta itemprop=wordCount content="235">
+<meta itemprop=keywords content="updates,"><meta property="og:title" content="Status Update, 4 July 2022">
+<meta property="og:description" content="Hello, this was an even slower week :D. I only worked on taha and renoir this week.
+In renoir news. I started working on making the compute example work on Metal backend. The compute example is a simple compute shader to increment 100 numbers in a GPU buffer. During that I found out that Metal&rsquo;s compute dispatch function needs the threads per thread-group count unlike OpenGL or DirectX which you can specify that size/count in the shader itself.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://moustapha.xyz/posts/status-update-4-july-2022/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2022-07-05T00:21:25+02:00">
+<meta property="article:modified_time" content="2022-07-05T00:21:25+02:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="Status Update, 4 July 2022">
+<meta name=twitter:description content="Hello, this was an even slower week :D. I only worked on taha and renoir this week.
+In renoir news. I started working on making the compute example work on Metal backend. The compute example is a simple compute shader to increment 100 numbers in a GPU buffer. During that I found out that Metal&rsquo;s compute dispatch function needs the threads per thread-group count unlike OpenGL or DirectX which you can specify that size/count in the shader itself.">
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display:700" rel=stylesheet type=text/css>
+<link rel=stylesheet type=text/css media=screen href=https://moustapha.xyz/css/normalize.css>
+<link rel=stylesheet type=text/css media=screen href=https://moustapha.xyz/css/main.css>
+<link id=dark-scheme rel=stylesheet type=text/css href=https://moustapha.xyz/css/dark.css>
+<script src=https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js></script>
+<script src=https://moustapha.xyz/js/main.js></script>
+</head>
+<body>
+<div class="container wrapper">
+<div class=header>
+<h1 class=site-title><a href=https://moustapha.xyz/>Moustapha Saad</a></h1>
+<div class=site-description><p>Some random graphics/compilers programmer</p><nav class="nav social">
+<ul class=flat><li><a href=mailto:moustapha.saad.abdelhamed@gmail.com title=Email><i data-feather=mail></i></a></li><li><a href=https://github.com/MoustaphaSaad title=Github><i data-feather=github></i></a></li><li><a href=/index.xml title=RSS><i data-feather=rss></i></a></li></ul>
+</nav>
+</div>
+<nav class=nav>
+<ul class=flat>
+<li>
+<a href=/>Home</a>
+</li>
+<li>
+<a href=/posts>All Posts</a>
+</li>
+<li>
+<a href=/projects>Projects</a>
+</li>
+<li>
+<a href=/about>About</a>
+</li>
+<li>
+<a href=/tags>Tags</a>
+</li>
+<li>
+<a href=/resume.pdf>Resume</a>
+</li>
+</ul>
+</nav>
+</div>
+<div class=post>
+<div class=post-header>
+<div class=meta>
+<div class=date>
+<span class=day>05</span>
+<span class=rest>Jul 2022</span>
+</div>
+</div>
+<div class=matter>
+<h1 class=title>Status Update, 4 July 2022</h1>
+</div>
+</div>
+<div class=markdown>
+<p>Hello, this was an even slower week :D. I only worked on taha and renoir this week.</p>
+<p>In renoir news. I started working on making the compute example work on Metal backend. The compute example is a simple compute shader to increment 100 numbers in a GPU buffer. During that I found out that Metal&rsquo;s compute dispatch function needs the threads per thread-group count unlike OpenGL or DirectX which you can specify that size/count in the shader itself. <code>[numthreads(10, 1, 1)]</code> in HLSL, and <code>layout (local_size_x = 10) in;</code> in GLSL. This means that compute dispatch function in renoir sadly will need to be revisited.</p>
+<p>In taha news. I improved the engine resource usage by using const values in tags feature and now you can bind whatever engine resource you want to any shader variable you want using tags. Here&rsquo;s how SSAO blur shader refers to its input and output textures</p>
+<div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-golang data-lang=golang><span>@</span>image
+<span>@</span>resource { name = taha.TEXTURE_DEFERRED_SSAO }
+<span style=color:#00f>var</span> deferred_ssao: Texture2D&lt;<span style=color:#2b91af>float</span>&gt;;
+
+<span>@</span>image
+<span>@</span>resource { name = taha.TEXTURE_DEFERRED_SSAO_BLURRED }
+<span style=color:#00f>var</span> deferred_ssao_blurred: RWTexture2D&lt;<span style=color:#2b91af>float</span>&gt;;
+</code></pre></div><p>Note that <code>@resource</code> tag which is used to guide the engine automatic binding code. This should allow the user the flexibilty to use any type he wants, in this case I only need read access to ssao texture so I use <code>Texture2D</code> but I need read write access to ssao blurred texture so I use <code>RWTexture2D</code>.</p>
+<p>That&rsquo;s it for this week.
+Thanks for reading.</p>
+</div>
+<div class=tags>
+<ul class=flat>
+<li><a href=/tags/updates>updates</a></li>
+</ul>
+</div></div>
+</div>
+<div class="footer wrapper">
+<nav class=nav>
+<div>2022 © Copyright notice | <a href=https://github.com/knadh/hugo-ink>Ink</a> theme on <a href=https://gohugo.io>Hugo</a></div>
+</nav>
+</div>
+<script>feather.replace()</script>
+</body>
+</html>
