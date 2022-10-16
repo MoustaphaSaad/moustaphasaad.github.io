@@ -6,7 +6,7 @@ description: "Outputting the first image"
 tags: ["general-programming", "ray-tracing", "IO", "odin", "golang", "c++"]
 ---
 
-Series index is [here](./rtow-part-0.md)
+Series index is [here](../rtow-part-0.md)
 
 Let's start by writing the necessary code to output the following image:
 
