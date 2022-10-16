@@ -6,11 +6,11 @@ description: "Outputting the first image"
 tags: ["general-programming", "ray-tracing", "IO", "odin", "golang", "c++"]
 ---
 
-Series index is [here](../rtow-part-0.md)
+Series index is [here](../rtow-part-0)
 
 Let's start by writing the necessary code to output the following image:
 
-![result image](../../static/img/rtow-part-1-color.png)
+![result image](../../static/rtow-part-1-color.png)
 
 ## C++
 

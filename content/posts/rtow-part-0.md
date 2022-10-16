@@ -17,6 +17,6 @@ I want to spice things up a bit, and maybe I can get something cool at the end.
 I predict that I will either like odin or golang (over C++) and use it to work on future fun projects.
 
 This is the index post, let's see where we will end up:
-- [Part 1: Disk I/O](../rtow-part-1.md)
+- [Part 1: Disk I/O](../rtow-part-1)
 
 That's all folks.
