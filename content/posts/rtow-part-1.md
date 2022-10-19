@@ -123,3 +123,9 @@ main :: proc() {
 ```
 
 Time: 476.455ms
+
+## Conclusion
+
+I really like Go's simplicitly, Odin feels like an explicit version of Go. but Odin feels rough around the edges, Go feels more polished, which makes sense as go is older and more popular and has stable releases, Odin on the other hand is still pre 1.0.
+
+That's all folks.

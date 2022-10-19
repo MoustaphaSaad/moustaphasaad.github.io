@@ -18,5 +18,6 @@ I predict that I will either like odin or golang (over C++) and use it to work o
 
 This is the index post, let's see where we will end up:
 - [Part 1: Disk I/O](../rtow-part-1)
+- [Part 2: Vec3](../rtow-part-2)
 
 That's all folks.
