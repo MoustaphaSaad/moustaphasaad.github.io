@@ -21,5 +21,6 @@ This is the index post, let's see where we will end up:
 - [Part 2: Vec3](../rtow-part-2)
 - [Part 3: Sky](../rtow-part-3)
 - [Part 3: First Sphere](../rtow-part-4)
+- [Part 4: Hittable Abstraction](../rtow-part-5)
 
 That's all folks.
