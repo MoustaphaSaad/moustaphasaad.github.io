@@ -3,7 +3,7 @@ title: "Ray Tracing in One Weekend - Hittable Abstraction"
 date: 2022-11-01T23:26:43+02:00
 draft: false
 description: "Abstracting away a hittable object in 3 different programming languages"
-tags: ["general-programming", "ray-tracing", "abstraction", "interfaces", "inheritance, "odin", "golang", "c++"]
+tags: ["general-programming", "ray-tracing", "abstraction", "interfaces", "inheritance", "odin", "golang", "c++"]
 ---
 
 Series index is [here](../rtow-part-0)
