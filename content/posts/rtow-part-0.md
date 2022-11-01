@@ -20,7 +20,8 @@ This is the index post, let's see where we will end up:
 - [Part 1: Disk I/O](../rtow-part-1)
 - [Part 2: Vec3](../rtow-part-2)
 - [Part 3: Sky](../rtow-part-3)
-- [Part 3: First Sphere](../rtow-part-4)
-- [Part 4: Hittable Abstraction](../rtow-part-5)
+- [Part 4: First Sphere](../rtow-part-4)
+- [Part 5: Hittable Abstraction](../rtow-part-5)
+- [Part 6: Antialiasing](../rtow-part-6)
 
 That's all folks.
