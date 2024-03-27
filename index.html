@@ -13,7 +13,7 @@
   <script>
     function editHomeButton() {
       let home = document.getElementById("home-button");
-      let pathName = "/"//window.location.pathname;
+      let pathName = window.location.pathname;
       let pageName = pathName.substring(pathName.lastIndexOf('/') + 1);
       if (pageName === "" || pageName === "index.html") {
         home.textContent = "";
@@ -25,7 +25,6 @@
       }
     }
     window.onload = editHomeButton;
-    console.log("koko");
   </script>
 </head>
 <body>

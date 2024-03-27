@@ -13,7 +13,7 @@
   <script>
     function editHomeButton() {
       let home = document.getElementById("home-button");
-      let pathName = "/"//window.location.pathname;
+      let pathName = window.location.pathname;
       let pageName = pathName.substring(pathName.lastIndexOf('/') + 1);
       if (pageName === "" || pageName === "index.html") {
         home.textContent = "";
@@ -25,7 +25,6 @@
       }
     }
     window.onload = editHomeButton;
-    console.log("koko");
   </script>
 </head>
 <body>
@@ -37,8 +36,8 @@
 </header>
 <body dir="rtl">
 <p>كتاب كلب المعمل هو رواية للكاتب إبراهيم البجلاتي.</p>
-<p>إبراهيم البجلاتي دكتور مسالك بولية، بصراحة كان لازم المعلومة دي على
-الكتاب من بره لأن دي مش رواية ده كتاب مسالك بولية، وأنا لو كنت أعرف إن
+<p>إبراهيم البجلاتي دكتور مسالك بولية، بصراحة كان لازم المعلومة دي تكون
+على الغلاف لأن دي مش رواية ده كتاب مسالك بولية، وأنا لو كنت أعرف إن
 الموضوع فيه مسالك بولية مكنتش اشتريت الكتاب، وأنا ألفت النظر إلى المسالك
 البولية لأنك عندما تقرأ الكتاب لن تستطيع الهرب لا من المسالك ولا من
 البول والدم اللي هيغرقك وأنت بتقرأ.</p>
