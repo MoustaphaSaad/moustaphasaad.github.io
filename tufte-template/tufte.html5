@@ -32,6 +32,22 @@ $endif$
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
+  <script>
+    function editHomeButton() {
+      let home = document.getElementById("home-button");
+      let pathName = window.location.pathname;
+      let pageName = pathName.substring(pathName.lastIndexOf('/') + 1);
+      if (pageName === "" || pageName === "index.html") {
+        home.textContent = "";
+      } else {
+        const defaultLang = document.documentElement.lang.substr(0, 2);
+        if (defaultLang === "ar") {
+          home.textContent = "الصفحة الرئيسية";
+        }
+      }
+    }
+    window.onload = editHomeButton;
+  </script>
 $for(header-includes)$
   $header-includes$
 $endfor$
@@ -41,6 +57,7 @@ $for(include-before)$
 $include-before$
 $endfor$
 <article>
+<h3 class="title"><a href=index.html id="home-button">Home</a></h3>
 $if(title)$
 <header>
 <h1 class="title">$title$</h1>
