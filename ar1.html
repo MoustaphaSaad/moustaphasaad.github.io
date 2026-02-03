@@ -1,0 +1,730 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Meanings of Augmented Triliteral Verb Patterns</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: Tahoma, Arial, sans-serif; margin: 16px; }
+    table { border-collapse: collapse; width: 100%; border: 1px solid #333; }
+    th, td { border: 1px solid #333; padding: 10px 8px; text-align: center; vertical-align: middle; }
+    thead th { background: #f2f2f2; }
+    .section { background: #e8f0ff; font-weight: 700; }
+    .rare { color: #1e4db7; font-weight: 700; }
+    .hint { font-weight: 700; }
+    caption { caption-side: top; font-weight: 700; margin-bottom: 10px; }
+    .note { margin-top: 10px; font-size: 14px; color: #333; }
+    .arabic-word { font-family: "Amiri", Tahoma, Arial, sans-serif; font-size: 1.1em; cursor: pointer; text-decoration: underline; text-decoration-style: dotted; }
+    .arabic-word.is-broken { font-weight: 700; }
+    .root-input { font-family: "Amiri", Tahoma, Arial, sans-serif; font-size: 1.1em; width: 5.5em; text-align: center; }
+    .derived-word { text-decoration: none; }
+    .root-letter { color: #c00000; }
+    .custom-col { background: #fff6c7; }
+    .centered-input { text-align: center; }
+    .translate-link { font-size: 12px; margin-left: 6px; text-decoration: none; color: #1a4fb3; }
+    .translate-link:hover { text-decoration: underline; }
+    .arabic-item { white-space: nowrap; }
+  </style>
+</head>
+<body>
+
+<div class="centered-input">
+  <label for="root-input"><b>Custom Root</b></label>
+  <input id="root-input" class="root-input" type="text" dir="rtl" maxlength="3" placeholder="خرج" aria-label="Custom Arabic root">
+</div>
+<table>
+  <caption>Augmented Triliteral Verb Patterns: Common Meaning + Example</caption>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Pattern</th>
+      <th>Memory Keyword</th>
+      <th>Common Meaning Added by the Augmentation</th>
+      <th>Example Root</th>
+      <th>Example (Past Tense)</th>
+      <th>
+        <div>Active Participle</div>
+        <div>اسم الفاعل</div>
+        <div>Example Root</div>
+      </th>
+      <th>
+        <div>Passive Participle</div>
+        <div>اسم المفعول</div>
+        <div>Example Root</div>
+      </th>
+      <th>
+        <div>Place Noun</div>
+        <div>اسم المكان</div>
+        <div>Example Root</div>
+      </th>
+      <th>
+        <div>Time Noun</div>
+        <div>اسم الزمان</div>
+        <div>Example Root</div>
+      </th>
+      <th class="custom-col">Derived (Custom Root)</th>
+      <th class="custom-col">
+        <div>Active Participle</div>
+        <div>اسم الفاعل</div>
+        <div>Custom Root</div>
+      </th>
+      <th class="custom-col">
+        <div>Passive Participle</div>
+        <div>اسم المفعول</div>
+        <div>Custom Root</div>
+      </th>
+      <th class="custom-col">
+        <div>Place Noun</div>
+        <div>اسم المكان</div>
+        <div>Custom Root</div>
+      </th>
+      <th class="custom-col">
+        <div>Time Noun</div>
+        <div>اسم الزمان</div>
+        <div>Custom Root</div>
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr data-root="كتب">
+      <td class="section">Triliteral (Non‑Augmented)</td>
+      <td><b><span class="arabic-word pattern-word" data-pattern="فَعَلَ">فَعَلَ</span></b></td>
+      <td class="hint">Basic</td>
+      <td>Basic triliteral verb (non‑augmented)</td>
+      <td><span class="arabic-word root-word">كتب</span></td>
+      <td><b><span class="arabic-word">كَتَبَ</span></b></td>
+      <td><span class="arabic-word example-fa3il">—</span></td>
+      <td><span class="arabic-word example-maf3ul">—</span></td>
+      <td><span class="arabic-word example-place">—</span></td>
+      <td><span class="arabic-word example-time">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-word">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-fa3il">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-maf3ul">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-place">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-time">—</span></td>
+    </tr>
+    <tr data-root="خرج">
+      <td class="section" rowspan="3">Augmented by 1 letter</td>
+      <td><b><span class="arabic-word pattern-word" data-pattern="أَفْعَلَ">أَفْعَلَ</span></b></td>
+      <td class="hint">Causative</td>
+      <td>Make an intransitive verb transitive / cause the action in someone else</td>
+      <td><span class="arabic-word root-word">خرج</span></td>
+      <td><b><span class="arabic-word">أخرجَ</span></b></td>
+      <td><span class="arabic-word example-fa3il">—</span></td>
+      <td><span class="arabic-word example-maf3ul">—</span></td>
+      <td><span class="arabic-word example-place">—</span></td>
+      <td><span class="arabic-word example-time">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-word">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-fa3il">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-maf3ul">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-place">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-time">—</span></td>
+    </tr>
+    <tr data-root="كسر">
+      <td><b><span class="arabic-word pattern-word" data-pattern="فَعَّلَ">فَعَّلَ</span></b></td>
+      <td class="hint">Intensive</td>
+      <td>Intensification / repetition / emphasis, sometimes causative</td>
+      <td><span class="arabic-word root-word">كسر</span></td>
+      <td><b><span class="arabic-word">كَسَّرَ</span></b></td>
+      <td><span class="arabic-word example-fa3il">—</span></td>
+      <td><span class="arabic-word example-maf3ul">—</span></td>
+      <td><span class="arabic-word example-place">—</span></td>
+      <td><span class="arabic-word example-time">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-word">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-fa3il">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-maf3ul">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-place">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-time">—</span></td>
+    </tr>
+    <tr data-root="كتب">
+      <td><b><span class="arabic-word pattern-word" data-pattern="فَاعَلَ">فَاعَلَ</span></b></td>
+      <td class="hint">Participation</td>
+      <td>Shared action between two (can also imply contest/attempt)</td>
+      <td><span class="arabic-word root-word">كتب</span></td>
+      <td><b><span class="arabic-word">كَاتَبَ</span></b></td>
+      <td><span class="arabic-word example-fa3il">—</span></td>
+      <td><span class="arabic-word example-maf3ul">—</span></td>
+      <td><span class="arabic-word example-place">—</span></td>
+      <td><span class="arabic-word example-time">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-word">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-fa3il">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-maf3ul">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-place">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-time">—</span></td>
+    </tr>
+
+    <tr data-root="كسر">
+      <td class="section" rowspan="5">Augmented by 2 letters</td>
+      <td><b><span class="arabic-word pattern-word" data-pattern="اِنْفَعَلَ">اِنْفَعَلَ</span></b></td>
+      <td class="hint">Passive/Reflexive</td>
+      <td>Result/affectedness by the action (as if the action happened to it)</td>
+      <td><span class="arabic-word root-word">كسر</span></td>
+      <td><b><span class="arabic-word">اِنْكَسَرَ</span></b></td>
+      <td><span class="arabic-word example-fa3il">—</span></td>
+      <td><span class="arabic-word example-maf3ul">—</span></td>
+      <td><span class="arabic-word example-place">—</span></td>
+      <td><span class="arabic-word example-time">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-word">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-fa3il">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-maf3ul">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-place">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-time">—</span></td>
+    </tr>
+    <tr data-root="جهد">
+      <td><b><span class="arabic-word pattern-word" data-pattern="اِفْتَعَلَ">اِفْتَعَلَ</span></b></td>
+      <td class="hint">Effort/Adoption</td>
+      <td>Effort / self‑initiative / adoption, sometimes participation</td>
+      <td><span class="arabic-word root-word">جهد</span></td>
+      <td><b><span class="arabic-word">اِجْتَهَدَ</span></b></td>
+      <td><span class="arabic-word example-fa3il">—</span></td>
+      <td><span class="arabic-word example-maf3ul">—</span></td>
+      <td><span class="arabic-word example-place">—</span></td>
+      <td><span class="arabic-word example-time">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-word">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-fa3il">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-maf3ul">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-place">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-time">—</span></td>
+    </tr>
+    <tr data-root="علم">
+      <td><b><span class="arabic-word pattern-word" data-pattern="تَفَعَّلَ">تَفَعَّلَ</span></b></td>
+      <td class="hint">Gradual</td>
+      <td>Gradual development or acquiring a quality; sometimes passive of “فعّل”</td>
+      <td><span class="arabic-word root-word">علم</span></td>
+      <td><b><span class="arabic-word">تَعَلَّمَ</span></b></td>
+      <td><span class="arabic-word example-fa3il">—</span></td>
+      <td><span class="arabic-word example-maf3ul">—</span></td>
+      <td><span class="arabic-word example-place">—</span></td>
+      <td><span class="arabic-word example-time">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-word">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-fa3il">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-maf3ul">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-place">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-time">—</span></td>
+    </tr>
+    <tr data-root="كتب">
+      <td><b><span class="arabic-word pattern-word" data-pattern="تَفَاعَلَ">تَفَاعَلَ</span></b></td>
+      <td class="hint">Reciprocal</td>
+      <td>Mutual/reciprocal action (can sometimes imply pretence)</td>
+      <td><span class="arabic-word root-word">كتب</span></td>
+      <td><b><span class="arabic-word">تَكَاتَبَ</span></b></td>
+      <td><span class="arabic-word example-fa3il">—</span></td>
+      <td><span class="arabic-word example-maf3ul">—</span></td>
+      <td><span class="arabic-word example-place">—</span></td>
+      <td><span class="arabic-word example-time">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-word">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-fa3il">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-maf3ul">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-place">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-time">—</span></td>
+    </tr>
+    <tr data-root="حمر">
+      <td><b><span class="arabic-word pattern-word" data-pattern="اِفْعَلَّ">اِفْعَلَّ</span></b></td>
+      <td class="hint">Color/Quality</td>
+      <td>Colors and strong qualities (red, black, etc.)</td>
+      <td><span class="arabic-word root-word">حمر</span></td>
+      <td><b><span class="arabic-word">اِحْمَرَّ</span></b></td>
+      <td><span class="arabic-word example-fa3il">—</span></td>
+      <td><span class="arabic-word example-maf3ul">—</span></td>
+      <td><span class="arabic-word example-place">—</span></td>
+      <td><span class="arabic-word example-time">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-word">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-fa3il">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-maf3ul">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-place">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-time">—</span></td>
+    </tr>
+
+    <tr data-root="غفر">
+      <td class="section" rowspan="3">Augmented by 3 letters</td>
+      <td><b><span class="arabic-word pattern-word" data-pattern="اِسْتَفْعَلَ">اِسْتَفْعَلَ</span></b></td>
+      <td class="hint">Seeking</td>
+      <td>Seeking/asking (often: consider/assume or become, depending on the verb)</td>
+      <td><span class="arabic-word root-word">غفر</span></td>
+      <td><b><span class="arabic-word">اِسْتَغْفَرَ</span></b></td>
+      <td><span class="arabic-word example-fa3il">—</span></td>
+      <td><span class="arabic-word example-maf3ul">—</span></td>
+      <td><span class="arabic-word example-place">—</span></td>
+      <td><span class="arabic-word example-time">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-word">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-fa3il">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-maf3ul">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-place">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-time">—</span></td>
+    </tr>
+    <tr data-root="عشب">
+      <td><b class="rare"><span class="arabic-word pattern-word" data-pattern="اِفْعَوْعَلَ">اِفْعَوْعَلَ</span></b></td>
+      <td class="hint rare">Rare</td>
+      <td>Often: abundance/spread or disturbance in form/motion</td>
+      <td><span class="arabic-word root-word">عشب</span></td>
+      <td><b class="rare"><span class="arabic-word">اِعْشَوْشَبَ</span></b></td>
+      <td><span class="arabic-word example-fa3il">—</span></td>
+      <td><span class="arabic-word example-maf3ul">—</span></td>
+      <td><span class="arabic-word example-place">—</span></td>
+      <td><span class="arabic-word example-time">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-word">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-fa3il">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-maf3ul">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-place">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-time">—</span></td>
+    </tr>
+    <tr data-root="حمر">
+      <td><b class="rare"><span class="arabic-word pattern-word" data-pattern="اِفْعَالَّ">اِفْعَالَّ</span></b></td>
+      <td class="hint rare">Rare</td>
+      <td>Close to the colors/qualities pattern with emphasis (less common)</td>
+      <td><span class="arabic-word root-word">حمر</span></td>
+      <td><b class="rare"><span class="arabic-word">اِحْمَارَّ</span></b></td>
+      <td><span class="arabic-word example-fa3il">—</span></td>
+      <td><span class="arabic-word example-maf3ul">—</span></td>
+      <td><span class="arabic-word example-place">—</span></td>
+      <td><span class="arabic-word example-time">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-word">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-fa3il">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-maf3ul">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-place">—</span></td>
+      <td class="custom-col"><span class="arabic-word derived-time">—</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="note">
+  *Red = rare patterns.*<br/>
+  For memorization: keep one keyword per pattern (causative/intensive/participation/affectedness/gradual/reciprocal/color/seeking).
+</p>
+<p class="note">
+  Note: Not all derived forms are guaranteed to be valid, commonly used words.
+</p>
+
+<table>
+  <caption>Tool Noun (اسم الآلة) Patterns</caption>
+  <thead>
+    <tr>
+      <th>Pattern</th>
+      <th>Notes</th>
+      <th>Examples</th>
+      <th class="custom-col">Custom Root</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b><span class="arabic-word tool-pattern" data-pattern="مِفْعَل">مِفْعَل</span></b></td>
+      <td>Common classical pattern</td>
+      <td><span class="arabic-item"><span class="arabic-word">مِبْرَد</span></span>, <span class="arabic-item"><span class="arabic-word">مِفْتَح</span></span></td>
+      <td class="custom-col"><span class="arabic-word tool-derived">—</span></td>
+    </tr>
+    <tr>
+      <td><b><span class="arabic-word tool-pattern" data-pattern="مِفْعَال">مِفْعَال</span></b></td>
+      <td>Common classical pattern</td>
+      <td><span class="arabic-item"><span class="arabic-word">مِنْشَار</span></span>, <span class="arabic-item"><span class="arabic-word">مِفْتَاح</span></span></td>
+      <td class="custom-col"><span class="arabic-word tool-derived">—</span></td>
+    </tr>
+    <tr>
+      <td><b><span class="arabic-word tool-pattern" data-pattern="مِفْعَلَة">مِفْعَلَة</span></b></td>
+      <td>Common classical pattern</td>
+      <td><span class="arabic-item"><span class="arabic-word">مِكْنَسَة</span></span>, <span class="arabic-item"><span class="arabic-word">مِثْقَلَة</span></span></td>
+      <td class="custom-col"><span class="arabic-word tool-derived">—</span></td>
+    </tr>
+    <tr>
+      <td><b><span class="arabic-word tool-pattern" data-pattern="فَعّالَة">فَعّالَة</span></b></td>
+      <td>Modern/common for devices</td>
+      <td><span class="arabic-item"><span class="arabic-word">غَسّالَة</span></span>, <span class="arabic-item"><span class="arabic-word">ثَلّاجَة</span></span></td>
+      <td class="custom-col"><span class="arabic-word tool-derived">—</span></td>
+    </tr>
+    <tr>
+      <td><b><span class="arabic-word tool-pattern" data-pattern="فَعّال">فَعّال</span></b></td>
+      <td>Less common; tool/occupation overlap</td>
+      <td><span class="arabic-item"><span class="arabic-word">قَصّاب</span></span>, <span class="arabic-item"><span class="arabic-word">حَطّاب</span></span></td>
+      <td class="custom-col"><span class="arabic-word tool-derived">—</span></td>
+    </tr>
+    <tr>
+      <td><b><span class="arabic-word tool-pattern" data-pattern="فَاعُول">فَاعُول</span></b></td>
+      <td>Less common pattern</td>
+      <td><span class="arabic-word">سَاطُور</span></td>
+      <td class="custom-col"><span class="arabic-word tool-derived">—</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<script>
+  function splitGraphemes(text) {
+    if (window.Intl && Intl.Segmenter) {
+      const seg = new Intl.Segmenter("ar", { granularity: "grapheme" });
+      return Array.from(seg.segment(text), s => s.segment);
+    }
+    return Array.from(text);
+  }
+
+  function escapeHtml(text) {
+    return text
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/\"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  function isArabicCombiningMark(ch) {
+    const code = ch.codePointAt(0);
+    return (
+      (code >= 0x064B && code <= 0x065F) ||
+      code === 0x0670 ||
+      (code >= 0x06D6 && code <= 0x06ED)
+    );
+  }
+
+  function wrapRootLetters(text) {
+    return splitGraphemes(text)
+      .map(letter => `<span class="root-letter">${escapeHtml(letter)}</span>`)
+      .join("");
+  }
+
+  function applyPatternHTML(pattern, rootLetters) {
+    const placeholders = markPlaceholders(pattern);
+
+    let html = "";
+    for (let i = 0; i < placeholders.length; i += 1) {
+      const ch = placeholders[i];
+      if (ch === "\uE000" || ch === "\uE001" || ch === "\uE002") {
+        const rootIndex = ch === "\uE000" ? 0 : ch === "\uE001" ? 1 : 2;
+        let chunk = rootLetters[rootIndex] || "";
+        while (i + 1 < placeholders.length && isArabicCombiningMark(placeholders[i + 1])) {
+          chunk += placeholders[i + 1];
+          i += 1;
+        }
+        html += `<span class="root-letter">${escapeHtml(chunk)}</span>`;
+      } else {
+        html += escapeHtml(ch);
+      }
+    }
+    return html;
+  }
+
+  function markPlaceholders(pattern) {
+    return pattern
+      .replace(/ف/g, "\uE000")
+      .replace(/ع/g, "\uE001")
+      .replace(/ل/g, "\uE002");
+  }
+
+  function deriveWithPatterns(patternOrPatterns, rootLetters) {
+    const patterns = Array.isArray(patternOrPatterns) ? patternOrPatterns : [patternOrPatterns];
+    const htmlParts = patterns.map(p => applyPatternHTML(p, rootLetters));
+    return htmlParts.join(" / ");
+  }
+
+  function buildRootMaskFromHtml(html) {
+    const wrapper = document.createElement("div");
+    wrapper.innerHTML = html;
+    const mask = [];
+
+    function walk(node) {
+      if (node.nodeType === Node.TEXT_NODE) {
+        const graphemes = splitGraphemes(node.textContent || "");
+        for (let i = 0; i < graphemes.length; i += 1) {
+          mask.push(false);
+        }
+        return;
+      }
+      if (node.nodeType === Node.ELEMENT_NODE) {
+        const isRoot = node.classList.contains("root-letter");
+        const text = node.textContent || "";
+        const graphemes = splitGraphemes(text);
+        if (isRoot) {
+          for (let i = 0; i < graphemes.length; i += 1) {
+            mask.push(true);
+          }
+          return;
+        }
+        node.childNodes.forEach(child => walk(child));
+      }
+    }
+
+    wrapper.childNodes.forEach(child => walk(child));
+    return mask;
+  }
+
+  function buildBrokenHtml(text, mask) {
+    const graphemes = splitGraphemes(text);
+    return graphemes
+      .map((g, i) => {
+        const cls = mask && mask[i] ? "root-letter" : "";
+        return `<span class="${cls}">${escapeHtml(g)}</span>`;
+      })
+      .join(" ");
+  }
+
+  function buildTranslateUrl(text) {
+    const encoded = encodeURIComponent(text);
+    return `https://translate.google.com/?sl=ar&tl=en&text=${encoded}&op=translate`;
+  }
+
+  function ensureTranslateLink(el) {
+    if (el.nextElementSibling && el.nextElementSibling.classList.contains("translate-link")) {
+      return el.nextElementSibling;
+    }
+    const link = document.createElement("a");
+    link.className = "translate-link";
+    link.target = "_blank";
+    link.rel = "noopener";
+    link.textContent = "🔎";
+    link.title = "Translate";
+    link.addEventListener("click", event => event.stopPropagation());
+    el.insertAdjacentElement("afterend", link);
+    return link;
+  }
+
+  function updateTranslateLink(el) {
+    const link = ensureTranslateLink(el);
+    const text = el.dataset.originalText || el.textContent;
+    link.href = buildTranslateUrl(text);
+  }
+
+  function setArabicHtml(el, html) {
+    el.innerHTML = html;
+    el.classList.remove("is-broken");
+    el.dataset.originalText = el.textContent;
+    el.dataset.originalHtml = el.innerHTML;
+    el.dataset.rootMask = JSON.stringify(buildRootMaskFromHtml(el.dataset.originalHtml));
+    delete el.dataset.broken;
+    updateTranslateLink(el);
+  }
+
+  function toggleBreakdown(el) {
+    if (!el.dataset.originalText) {
+      el.dataset.originalText = el.textContent;
+      el.dataset.originalHtml = el.innerHTML;
+      el.dataset.rootMask = JSON.stringify(buildRootMaskFromHtml(el.dataset.originalHtml));
+    }
+    if (el.classList.contains("is-broken")) {
+      el.innerHTML = el.dataset.originalHtml || escapeHtml(el.dataset.originalText);
+      el.classList.remove("is-broken");
+    } else {
+      const mask = el.dataset.rootMask ? JSON.parse(el.dataset.rootMask) : null;
+      el.innerHTML = buildBrokenHtml(el.dataset.originalText, mask);
+      el.classList.add("is-broken");
+    }
+  }
+
+  document.querySelectorAll(".arabic-word").forEach(el => {
+    el.addEventListener("click", () => toggleBreakdown(el));
+    setArabicHtml(el, el.innerHTML);
+  });
+
+  function updateDerived() {
+    const rootValue = rootInput.value.replace(/\s+/g, "");
+    const letters = splitGraphemes(rootValue);
+    const isValid = letters.length === 3;
+
+    document.querySelectorAll(".derived-word").forEach((el, index) => {
+      const patternEl = patternWords[index];
+      if (!patternEl || !patternEl.dataset.pattern) {
+        return;
+      }
+
+      if (!isValid) {
+        setArabicHtml(el, "—");
+        return;
+      }
+
+      const derivedHtml = applyPatternHTML(patternEl.dataset.pattern, letters);
+      setArabicHtml(el, derivedHtml);
+    });
+
+    document.querySelectorAll(".derived-fa3il").forEach((el, index) => {
+      const patternEl = patternWords[index];
+      const fa3ilPattern = getIsmFaPattern(patternEl?.dataset?.pattern);
+      if (!fa3ilPattern || !isValid) {
+        setArabicHtml(el, "—");
+        return;
+      }
+      const derivedHtml = applyPatternHTML(fa3ilPattern, letters);
+      setArabicHtml(el, derivedHtml);
+    });
+
+    document.querySelectorAll(".derived-maf3ul").forEach((el, index) => {
+      const patternEl = patternWords[index];
+      const maf3ulPattern = getIsmMafPattern(patternEl?.dataset?.pattern);
+      if (!maf3ulPattern || !isValid) {
+        setArabicHtml(el, "—");
+        return;
+      }
+      const derivedHtml = applyPatternHTML(maf3ulPattern, letters);
+      setArabicHtml(el, derivedHtml);
+    });
+
+    document.querySelectorAll(".derived-place").forEach((el, index) => {
+      const patternEl = patternWords[index];
+      const placePattern = getIsmPlacePattern(patternEl?.dataset?.pattern);
+      if (!placePattern || !isValid) {
+        setArabicHtml(el, "—");
+        return;
+      }
+      const derivedHtml = deriveWithPatterns(placePattern, letters);
+      setArabicHtml(el, derivedHtml);
+    });
+
+    document.querySelectorAll(".derived-time").forEach((el, index) => {
+      const patternEl = patternWords[index];
+      const timePattern = getIsmTimePattern(patternEl?.dataset?.pattern);
+      if (!timePattern || !isValid) {
+        setArabicHtml(el, "—");
+        return;
+      }
+      const derivedHtml = deriveWithPatterns(timePattern, letters);
+      setArabicHtml(el, derivedHtml);
+    });
+
+    document.querySelectorAll(".tool-derived").forEach((el, index) => {
+      const patternEl = toolPatterns[index];
+      if (!patternEl || !patternEl.dataset.pattern || !isValid) {
+        setArabicHtml(el, "—");
+        return;
+      }
+      const derivedHtml = applyPatternHTML(patternEl.dataset.pattern, letters);
+      setArabicHtml(el, derivedHtml);
+    });
+  }
+
+  function getIsmFaPattern(pastPattern) {
+    const map = {
+      "فَعَلَ": "فَاعِل",
+      "أَفْعَلَ": "مُفْعِل",
+      "فَعَّلَ": "مُفَعِّل",
+      "فَاعَلَ": "مُفَاعِل",
+      "اِنْفَعَلَ": "مُنْفَعِل",
+      "اِفْتَعَلَ": "مُفْتَعِل",
+      "تَفَعَّلَ": "مُتَفَعِّل",
+      "تَفَاعَلَ": "مُتَفَاعِل",
+      "اِفْعَلَّ": "مُفْعَلّ",
+      "اِسْتَفْعَلَ": "مُسْتَفْعِل",
+      "اِفْعَوْعَلَ": "مُفْعَوْعِل",
+      "اِفْعَالَّ": "مُفْعَالّ"
+    };
+    return map[pastPattern] || null;
+  }
+
+  function getIsmMafPattern(pastPattern) {
+    const map = {
+      "فَعَلَ": "مَفْعُول",
+      "أَفْعَلَ": "مُفْعَل",
+      "فَعَّلَ": "مُفَعَّل",
+      "فَاعَلَ": "مُفَاعَل",
+      "اِنْفَعَلَ": "مُنْفَعَل",
+      "اِفْتَعَلَ": "مُفْتَعَل",
+      "تَفَعَّلَ": "مُتَفَعَّل",
+      "تَفَاعَلَ": "مُتَفَاعَل",
+      "اِفْعَلَّ": "مُفْعَلّ",
+      "اِسْتَفْعَلَ": "مُسْتَفْعَل",
+      "اِفْعَوْعَلَ": "مُفْعَوْعَل",
+      "اِفْعَالَّ": "مُفْعَالّ"
+    };
+    return map[pastPattern] || null;
+  }
+
+  function getIsmPlacePattern(pastPattern) {
+    const map = {
+      "فَعَلَ": ["مَفْعَل", "مَفْعِل"],
+      "أَفْعَلَ": "مُفْعَل",
+      "فَعَّلَ": "مُفَعَّل",
+      "فَاعَلَ": "مُفَاعَل",
+      "اِنْفَعَلَ": "مُنْفَعَل",
+      "اِفْتَعَلَ": "مُفْتَعَل",
+      "تَفَعَّلَ": "مُتَفَعَّل",
+      "تَفَاعَلَ": "مُتَفَاعَل",
+      "اِفْعَلَّ": "مُفْعَلّ",
+      "اِسْتَفْعَلَ": "مُسْتَفْعَل",
+      "اِفْعَوْعَلَ": "مُفْعَوْعَل",
+      "اِفْعَالَّ": "مُفْعَالّ"
+    };
+    return map[pastPattern] || null;
+  }
+
+  function getIsmTimePattern(pastPattern) {
+    const map = {
+      "فَعَلَ": ["مَفْعَل", "مَفْعِل"],
+      "أَفْعَلَ": "مُفْعَل",
+      "فَعَّلَ": "مُفَعَّل",
+      "فَاعَلَ": "مُفَاعَل",
+      "اِنْفَعَلَ": "مُنْفَعَل",
+      "اِفْتَعَلَ": "مُفْتَعَل",
+      "تَفَعَّلَ": "مُتَفَعَّل",
+      "تَفَاعَلَ": "مُتَفَاعَل",
+      "اِفْعَلَّ": "مُفْعَلّ",
+      "اِسْتَفْعَلَ": "مُسْتَفْعَل",
+      "اِفْعَوْعَلَ": "مُفْعَوْعَل",
+      "اِفْعَالَّ": "مُفْعَالّ"
+    };
+    return map[pastPattern] || null;
+  }
+
+  function updateExampleFa3il() {
+    const rows = Array.from(document.querySelectorAll("table tbody tr"));
+    rows.forEach((row, index) => {
+      const root = row.dataset.root;
+      const patternEl = patternWords[index];
+      const output = row.querySelector(".example-fa3il");
+      const fa3ilPattern = getIsmFaPattern(patternEl?.dataset?.pattern);
+      if (!root || !fa3ilPattern || !output) {
+        return;
+      }
+      const letters = splitGraphemes(root);
+      setArabicHtml(output, applyPatternHTML(fa3ilPattern, letters));
+    });
+  }
+
+  function updateExampleMaf3ul() {
+    const rows = Array.from(document.querySelectorAll("table tbody tr"));
+    rows.forEach((row, index) => {
+      const root = row.dataset.root;
+      const patternEl = patternWords[index];
+      const output = row.querySelector(".example-maf3ul");
+      const maf3ulPattern = getIsmMafPattern(patternEl?.dataset?.pattern);
+      if (!root || !maf3ulPattern || !output) {
+        return;
+      }
+      const letters = splitGraphemes(root);
+      setArabicHtml(output, applyPatternHTML(maf3ulPattern, letters));
+    });
+  }
+
+  function updateExamplePlaceTime() {
+    const rows = Array.from(document.querySelectorAll("table tbody tr"));
+    rows.forEach((row, index) => {
+      const root = row.dataset.root;
+      const patternEl = patternWords[index];
+      const placeOut = row.querySelector(".example-place");
+      const timeOut = row.querySelector(".example-time");
+      const placePattern = getIsmPlacePattern(patternEl?.dataset?.pattern);
+      const timePattern = getIsmTimePattern(patternEl?.dataset?.pattern);
+      if (!root || !placeOut || !timeOut) {
+        return;
+      }
+      const letters = splitGraphemes(root);
+      if (placePattern) {
+        setArabicHtml(placeOut, deriveWithPatterns(placePattern, letters));
+      }
+      if (timePattern) {
+        setArabicHtml(timeOut, deriveWithPatterns(timePattern, letters));
+      }
+    });
+  }
+
+  const rootInput = document.getElementById("root-input");
+  const patternWords = Array.from(document.querySelectorAll(".pattern-word"));
+  const toolPatterns = Array.from(document.querySelectorAll(".tool-pattern"));
+  document.querySelectorAll(".root-word").forEach(el => {
+    setArabicHtml(el, wrapRootLetters(el.textContent));
+  });
+
+  rootInput.addEventListener("input", updateDerived);
+  updateExampleFa3il();
+  updateExampleMaf3ul();
+  updateExamplePlaceTime();
+</script>
+
+</body>
+</html>
